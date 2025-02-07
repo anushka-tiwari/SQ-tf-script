@@ -1,0 +1,29 @@
+version: "1.0"
+
+friendlyName: sonarqube-rds
+x-IaC-Type: AP
+functional:
+  domains:
+    - devsecops
+  components:
+    - sonarqube
+  cost-centers:
+    - 17501
+  operational-owners:
+    - infra
+
+requires:
+  properties:
+    s3_bucket_name:
+      alias: "s3_bucket_name"
+      x-description: "Name of the S3 bucket that contains the backup of the on-prem database"
+      x-terraform-type: string
+    backup_file_name:
+      alias: "backup_file_name"
+      x-description: "name of the backup file in the s3 bucket"
+      x-terraform-type: string
+    restore_db_name:
+      alias: "restore_db_name"
+      x-description: "name that we want to give for the database being restored on RDS"
+      x-terraform-type: string      
+
